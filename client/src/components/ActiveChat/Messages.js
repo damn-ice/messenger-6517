@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Box } from "@material-ui/core";
 import { SenderBubble, OtherUserBubble } from "../ActiveChat";
 import moment from "moment";
@@ -6,7 +6,7 @@ import moment from "moment";
 const Messages = (props) => {
 
   const { messages, otherUser, userId } = props;
-  const reversedMessages = [...messages].reverse()
+  const reversedMessages = useMemo(() => [...messages].reverse(), [messages])
 
   return (
     <Box>

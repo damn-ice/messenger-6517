@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   chatContainer: {
     marginLeft: 41,
     marginRight: 41,
-     display: "flex",
+    display: "flex",
     flexDirection: "column",
     flexGrow: 1,
     justifyContent: "space-between"
