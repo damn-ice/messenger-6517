@@ -29,7 +29,7 @@ const ActiveChat = (props) => {
     <Box className={classes.root}>
       {conversation.otherUser && (
         <>
-          <Header
+          <Header  
             username={conversation.otherUser.username}
             online={conversation.otherUser.online || false}
           />
