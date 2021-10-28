@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   chatContainer: {
     marginLeft: 41,
     marginRight: 41,
-    display: "flex",
+     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
     justifyContent: "space-between"
@@ -29,7 +29,7 @@ const ActiveChat = (props) => {
     <Box className={classes.root}>
       {conversation.otherUser && (
         <>
-          <Header
+          <Header  
             username={conversation.otherUser.username}
             online={conversation.otherUser.online || false}
           />

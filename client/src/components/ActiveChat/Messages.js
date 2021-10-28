@@ -4,11 +4,13 @@ import { SenderBubble, OtherUserBubble } from "../ActiveChat";
 import moment from "moment";
 
 const Messages = (props) => {
+
   const { messages, otherUser, userId } = props;
+  const reversedMessages = [...messages].reverse()
 
   return (
     <Box>
-      {messages.map((message) => {
+      {reversedMessages.map((message) => {
         const time = moment(message.createdAt).format("h:mm");
 
         return message.senderId === userId ? (
