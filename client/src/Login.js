@@ -9,11 +9,12 @@ import {
   FormControl,
   TextField,
 } from "@material-ui/core";
+import AuthImage from "./components/Authentication/AuthImage";
 import { login } from "./store/utils/thunkCreators";
 
 const Login = (props) => {
   const history = useHistory();
-  const { user, login } = props;
+  const { classes, user, login } = props;
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -28,41 +29,49 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
-        </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
+    <Box className={classes.root}>
+      <AuthImage />
+      <Grid container justify="center">
+        <Box className={classes.formBox}>
+          <Grid container item justify="flex-end" alignItems="center" className={classes.status}>
+            <Typography>Don't have an account?</Typography>
+            <Button 
+              className={classes.statusButton} variant="contained"
+              onClick={() => history.push("/register")}>
+              Create account
+            </Button>
+          </Grid>
+          <form onSubmit={handleLogin} className={classes.form}>
             <Grid>
-              <FormControl margin="normal" required>
+              <Grid><Typography className={classes.formHeading}>Welcome back!</Typography></Grid>
+              <Grid>
+                <FormControl fullWidth className={classes.formInput} required>
+                  <TextField
+                    aria-label="username"
+                    label="Username"
+                    name="username"
+                    type="text"
+                  />
+                </FormControl>
+              </Grid>
+              <FormControl fullWidth className={classes.formInput} required>
                 <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
+                  label="Password"
+                  aria-label="password"
+                  type="password"
+                  name="password"
                 />
               </FormControl>
+              <Grid container justify="center">
+                <Button type="submit" variant="contained" size="large"className={classes.submitButton}>
+                  Login
+                </Button>
+              </Grid>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
-    </Grid>
+          </form>
+        </Box>
+      </Grid>
+    </Box>
   );
 };
 
