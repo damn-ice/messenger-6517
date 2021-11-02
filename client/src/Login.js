@@ -10,11 +10,13 @@ import {
   TextField,
 } from "@material-ui/core";
 import AuthImage from "./components/Authentication/AuthImage";
+import authStyles from "./components/Authentication/authStyles";
 import { login } from "./store/utils/thunkCreators";
 
 const Login = (props) => {
   const history = useHistory();
-  const { classes, user, login } = props;
+  const classes = authStyles();
+  const { user, login } = props;
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -34,16 +36,17 @@ const Login = (props) => {
       <Grid container justify="center">
         <Box className={classes.formBox}>
           <Grid container item justify="flex-end" alignItems="center" className={classes.status}>
-            <Typography>Don't have an account?</Typography>
+            <Typography color="secondary">Don't have an account?</Typography>
             <Button 
-              className={classes.statusButton} variant="contained"
+              className={classes.statusButton} 
+              variant="text"
               onClick={() => history.push("/register")}>
               Create account
             </Button>
           </Grid>
           <form onSubmit={handleLogin} className={classes.form}>
             <Grid>
-              <Grid><Typography className={classes.formHeading}>Welcome back!</Typography></Grid>
+              <Grid><Typography variant="h4" className={classes.formHeading}>Welcome back!</Typography></Grid>
               <Grid>
                 <FormControl fullWidth className={classes.formInput} required>
                   <TextField
@@ -63,7 +66,7 @@ const Login = (props) => {
                 />
               </FormControl>
               <Grid container justify="center">
-                <Button type="submit" variant="contained" size="large"className={classes.submitButton}>
+                <Button type="submit" variant="contained" color="primary" size="large" className={classes.submitButton}>
                   Login
                 </Button>
               </Grid>

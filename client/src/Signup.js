@@ -11,11 +11,13 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import AuthImage from "./components/Authentication/AuthImage";
+import authStyles from "./components/Authentication/authStyles";
 import { register } from "./store/utils/thunkCreators";
 
 const Login = (props) => {
   const history = useHistory();
-  const { classes, user, register } = props;
+  const classes = authStyles();
+  const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {
@@ -43,17 +45,17 @@ const Login = (props) => {
       <Grid justify="center" container>
         <Box className={classes.formBox}>
           <Grid container item justify="flex-end" alignItems="center" className={classes.status}>
-            <Typography>Already have an account?</Typography>
+            <Typography color="secondary">Already have an account?</Typography>
             <Button 
               className={classes.statusButton} 
-              variant="contained" 
+              variant="text" 
               onClick={() => history.push("/login")}>
               Login
             </Button>
           </Grid>
           <form onSubmit={handleRegister} className={classes.form}>
             <Grid>
-              <Grid><Typography className={classes.formHeading}>Create an account.</Typography></Grid>
+              <Grid><Typography variant="h4" className={classes.formHeading}>Create an account.</Typography></Grid>
               <Grid>
                 <FormControl fullWidth className={classes.formInput}>
                   <TextField
@@ -107,7 +109,7 @@ const Login = (props) => {
                 </FormControl>
               </Grid>
               <Grid container justify="center">
-                <Button type="submit" variant="contained" size="large" className={classes.submitButton}>
+                <Button type="submit" variant="contained" color="primary" size="large" className={classes.submitButton}>
                   Create
                 </Button>
               </Grid>
