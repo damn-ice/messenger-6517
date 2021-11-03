@@ -26,7 +26,8 @@ const authStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3)
   },
   formHeading: {
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    fontWeight: "bold"
   },
   status: {
     marginTop: theme.spacing(3),
