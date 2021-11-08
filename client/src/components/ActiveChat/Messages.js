@@ -4,10 +4,9 @@ import { SenderBubble, OtherUserBubble } from "../ActiveChat";
 import moment from "moment";
 
 const Messages = (props) => {
-
   const { messages, otherUser, userId } = props;
   const reversedMessages = useMemo(() => [...messages].reverse(), [messages])
-
+  
   return (
     <Box>
       {reversedMessages.map((message) => {

@@ -1,17 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const ImageMessage = (props) => {
-  const { image, alt, className, width } = props;
+  const { image, className, alt = "user uploaded", width = 150 } = props;
 
   return (
     <img className={className} src={image} alt={alt} width={width} />
   );
 }
-
-ImageMessage.defaultProps = {
-  alt: "",
-  width: 150
-};
 
 export default ImageMessage;
 

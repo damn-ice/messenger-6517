@@ -4,6 +4,7 @@ import { FileCopyOutlined }from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
+import PreviewImages from "./PreviewImages";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -27,11 +28,14 @@ const Input = (props) => {
 
   const addImages = (e) => {
     const images = Array.from(e.target.files);
-    setImages(images);
-  }
+    images.length && setImages(images);
+  };
+
+  const removeImage = (id) => setImages(images.filter((image) => image.name !== id));
 
   const uploadImages = async (images) => {
-    const uploadedImages = Promise.all(images.map(async (image) => {
+    // Array of promise is returned as map calls an async function.
+    const uploadedImages = await Promise.all(images.map(async (image) => {
       const formData = new FormData();
       formData.append("file", image);
       formData.append("upload_preset", "hatchways");
@@ -43,13 +47,15 @@ const Input = (props) => {
           body: formData
         });
         const data = await response.json();
+
         return data.secure_url;
       } catch (error) {
       console.log(error);
       }
     }));
+  
     return uploadedImages;
-  }
+  };
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -73,6 +79,7 @@ const Input = (props) => {
 
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
+      {images && <PreviewImages images={images} removeImage={removeImage} />}
       <FormControl fullWidth hiddenLabel>
         <FilledInput
           classes={{ root: classes.input }}
