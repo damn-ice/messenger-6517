@@ -50,7 +50,7 @@ const Input = (props) => {
 
         return data.secure_url;
       } catch (error) {
-      console.log(error);
+      console.error(error);
       }
     }));
   
