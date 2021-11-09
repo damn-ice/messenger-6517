@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
+import MessageBody from "./MessageBody";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,23 +20,42 @@ const useStyles = makeStyles(() => ({
     color: "#91A3C0",
     letterSpacing: -0.2,
     padding: 8,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    wordWrap: "break-word"
   },
-  bubble: {
+  bubble:{
     background: "#F4F6FA",
     borderRadius: "10px 10px 0 10px"
+  },
+  imageContainer: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  imageBubble: {
+    display: "flex",
+    flexDirection: "column",
+    background: "#F4F6FA",
+    borderRadius: "10px 10px 0 10px",
+    margin: 5,
+    maxWidth: 150
+  },
+  image: {
+    borderRadius: "10px 10px 0 10px",
+  },
+  imageWithText: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
   }
 }));
 
 const SenderBubble = (props) => {
   const classes = useStyles();
-  const { time, text } = props;
+  const { time, text, images } = props;
+  
   return (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
-      <Box className={classes.bubble}>
-        <Typography className={classes.text}>{text}</Typography>
-      </Box>
+      <MessageBody classes={classes} images={images} text={text} />
     </Box>
   );
 };
